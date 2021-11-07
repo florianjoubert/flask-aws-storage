@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
-BUCKET = "lats-image-data"
+BUCKET = "devbucketflo"
 
 @app.route("/")
 def home():
@@ -14,7 +14,7 @@ def home():
 
 @app.route("/pics")
 def list():
-    contents = show_image(BUCKET)
+    contents = list_files(BUCKET)
     return render_template('collection.html', contents=contents)
 
 @app.route("/upload", methods=['POST'])
@@ -23,7 +23,8 @@ def upload():
         f = request.files['file']
         f.save(os.path.join(UPLOAD_FOLDER, secure_filename(f.filename)))
         upload_file(f"uploads/{f.filename}", BUCKET)
-        return redirect("/")
+        os.remove(f"uploads/{f.filename}")
+        return redirect("/pics")
 
 if __name__ == '__main__':
     app.run(debug=True)

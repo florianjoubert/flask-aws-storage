@@ -1,0 +1,14 @@
+{
+  "name": "flask-aws-storage",
+  "version": "1.0.0",
+  "description": "Flask app to store data into s3 and tailwind for ui",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^2.2.19"
+  }
+}

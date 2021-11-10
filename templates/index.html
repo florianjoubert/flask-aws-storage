@@ -1,17 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body>
-    <div class="content">
-      <h1>Upload your files to the AWS S3 Bucket</h1>
-      <div>
-        <h3>Upload your file here:</h3>
-        <form method="POST" action="/upload" enctype=multipart/form-data>
-          <input type=file name=file>
-          <input type=submit value=Upload>
-        </form>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload your files</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+</head>
+
+<body>
+  <div class="max-w-lg mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
+    <div class="max-w-3xl mx-auto">
+      <!-- Content goes here -->
+      <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          Upload your files to the AWS S3 Bucket
+        </h3>
+        <div class="flex items-center">
+          <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+          <button type="button" class="bg-indigo-600 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" role="switch" aria-checked="false" aria-labelledby="annual-billing-label">
+            <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+            <span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+          </button>
+          <span class="ml-3" id="annual-billing-label">
+            <span class="text-sm font-medium text-gray-900">Upload in production</span>
+          </span>
+        </div>
+        <div>
+          <h3>Upload your file here:</h3>
+          <form method="POST" action="/upload" enctype=multipart/form-data> <input type=file name=file>
+            <input type=submit value=Upload>
+          </form>
+        </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

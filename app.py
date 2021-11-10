@@ -1,22 +1,21 @@
 import os
 from flask import Flask, render_template, request, redirect, send_file
-from s3_functions import list_files, upload_file, show_image
+from s3_functions import list_files_v2, upload_file
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
-BUCKET = "devbucketflo"
-
+BUCKET = "preprod"
 @app.route("/")
 def home():
-    contents = list_files(BUCKET)
-    return render_template('index.html')
+    return render_template('main.html')
 
-@app.route("/pics")
-def list():
-    contents = list_files(BUCKET)
-    return render_template('collection.html', contents=contents)
-
+@app.route("/recent")
+def recent():
+    contents = list_files_v2(BUCKET)
+    print(contents)
+    return render_template('main_recent.html', files = contents)
+##files = list_files_v2(BUCKET)[:5:]
 @app.route("/upload", methods=['POST'])
 def upload():
     if request.method == "POST":
@@ -24,7 +23,11 @@ def upload():
         f.save(os.path.join(UPLOAD_FOLDER, secure_filename(f.filename)))
         upload_file(f"uploads/{f.filename}", BUCKET)
         os.remove(f"uploads/{f.filename}")
-        return redirect("/pics")
+        return redirect("/recent")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

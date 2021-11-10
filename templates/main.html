@@ -1,87 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-full bg-gray-100" lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beans Love Beers</title>
-  <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload your file</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
 </head>
 
-<body>
-  <div class="bg-green-300 px-3 py-1">
-    <h2 class="text-3xl font-light text-white m-0">Beans Love Beers</h2>
-  </div>
-  <!-- Search Bar -->
-  <div class="container">
-    <input type="text" placeholder="Search for beer..."
-      class="border-2 ml-64 border-gray-700 w-2/5 mt-10 py-3 px-4"></input>
-    <button class="bg-blue-700 text-xl hover:bg-blue-500 text-white py-2 px-3">Search</button>
-  </div>
-  <!-- Selection -->
-  <div class="container">
-    <div class="grid gap-8 grid-cols-3 mt-5 ">
-      <div
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg">
-        <img src="img/logo.jpg" class="h-16 w-12 mr-20 ml-8 mt-10" alt="Image">
-        <div class="w-3/5 mr-0">
-          <h2 class="text-gray-800 font-bold">Buzz</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore et excepturi autem iure molestias doloribus
-            ipsa praesentium.</p>
-        </div>
-      </div>
-      <div
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg"
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg">
-        <img src="img/Asset 140.png" class="h-16 w-12 mr-20 ml-8 mt-10" alt="Image">
-        <div class="w-3/5 mr-0">
-          <h2 class="text-gray-800 font-bold">Buzz</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore et excepturi autem iure molestias doloribus
-            ipsa praesentium</p>
-        </div>
-      </div>
-      <div
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg"
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg">
-        <img src="img/Asset 150.png" class="h-16 w-12 mr-20 ml-8 mt-10" alt="Image">
-        <div class="w-3/5 mr-0">
-          <h2 class="text-gray-800 font-bold">Buzz</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore et excepturi autem iure molestias doloribus
-            ipsa praesentium.</p>
-        </div>
-      </div>
-      <div
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg"
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg">
-        <img src="img/Asset 160.png" class="h-16 w-12 mr-20 ml-8 mt-10" alt="Image">
-        <div class="w-3/5 mr-0">
-          <h2 class="text-gray-800 font-bold">Buzz</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore et excepturi autem iure molestias doloribus
-            ipsa praesentium.</p>
-        </div>
-      </div>
-      <div
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg"
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg">
-        <img src="img/logo.jpg" class="h-16 w-12 mr-20 ml-8 mt-10" alt="Image">
-        <div class="w-3/5 mr-0">
-          <h2 class="text-gray-800 font-bold">Buzz</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore et excepturi autem iure molestias doloribus
-            ipsa praesentium.</p>
-        </div>
-      </div>
-      <div
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg"
-        class="transition duration-500 ease-in-out flex py-3 px-2 hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-110 hover:text-white hover:shadow-none hover:rounded border border-gray-300 shadow-lg">
-        <img src="img/Asset 150.png" class="h-16 w-12 mr-20 ml-8 mt-10" alt="Image">
-        <div class="w-3/5 mr-0">
-          <h2 class="text-gray-800 font-bold">Buzz</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore et excepturi autem iure molestias doloribus
-            ipsa praesentium</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<body class="h-full">
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div class="lg:w-2/5 md:w-3/4 mx-auto px-4 sm:px-6 lg:px-8 self-center my-48">
+        <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
+        <div class="mx-auto">
+            <img class="mx-auto mb-10 w-40" src="./static/img/wojo-noir.png" />
+            <!-- This example requires Tailwind CSS v2.0+ -->
+            <div class="bg-white overflow-hidden shadow rounded-3xl divide-y divide-gray-200">
+                <div class=" flex justify-center  px-4 py-5 sm:px-10">
+                    <!-- Content goes here -->
+                    <div class="relative  flex ">
+                        <div class="bg-gray-100 p-1.5 rounded-full flex">
+                            <a id="toggleUpload" href="/"
+                                class=" text-center  transition-colors ease-in-out duration-200 relative bg-blue-600 py-2 px-6 border-blue-700 rounded-full shadow-sm text-sm font-medium text-white whitespace-nowrap  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-700 focus:ring-white focus:z-10">New
+                                Upload</a>
+                            <a id="toggleRecent" href="{{ url_for('recent') }}"
+                                class=" text-center  transition-colors ease-in-out duration-200 ml-0.5 relative py-2 px-6 border border-transparent rounded-full text-sm font-medium  whitespace-nowrap  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-700 focus:ring-white focus:z-10">
+                                Recent</a>
+                        </div>
+                    </div>
+                    <!-- We use less vertical padding on card headers on desktop than on body sections -->
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:p-8">
+                    <!-- Content goes here -->
+                    <form id="formInput" name="formInput" method="POST" action="/upload" enctype=multipart/form-data>
+                        <div id="inputBlock">
+                        <label
+                            class=" cursor-pointer relative flex flex-row justify-center block w-full h-64 border-2 border-gray-300 border-dashed rounded-3xl p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <div class="grid grid-cols-1 gap-1 place-content-center ">
+                                <span class=" inline text-base font-light text-gray-400">
+                                    Click to browse
+                                </span>
+                            </div>
+                            <input type='file' type=file name=file id="inputFile" class="hidden" />
+                        </label>
+                </div>
+                <div id="fileToUpload" class="hidden">
+                    <div class="flex justify-between">
+                        <span id="fileName"></span>
+                        <button type="button" id="btnDeleteFile" onclick="deleteFile()"
+                            class="inline-flex items-center px-2.5 py-1.5 border border-red-500 shadow-sm text-xs font-medium rounded text-red-500 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            Delete
+                        </button>
+                    </div>
+                    <button type="submit"
+                        class=" mt-12 h-12 text-center w-full  px-4 py-2 border border-blue-600 text-sm font-medium rounded-xl shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Upload 1 file
+                    </button>
+                </div>
 
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="{{url_for('static',filename='js/script.js')}}"></script>
 </body>
 
 </html>

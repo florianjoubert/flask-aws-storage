@@ -45,17 +45,25 @@
                         </label>
                 </div>
                 <div id="fileToUpload" class="hidden">
-                    <div class="flex justify-between">
-                        <span id="fileName"></span>
-                        <button type="button" id="btnDeleteFile" onclick="deleteFile()"
-                            class="inline-flex items-center px-2.5 py-1.5 border border-red-500 shadow-sm text-xs font-medium rounded text-red-500 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                            Delete
+                    <ul role="list" class="divide-y divide-gray-200">
+                        <li class="py-3 flex justify-between">
+                            <div class="flex">
+                                <img class="h-4" id="fileImage" src="./static/img/icons/Image.png" alt="">
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-900" id="fileName"></p>
+                                    </p>
+                                    <p class="text-xs text-gray-500" id="fileSize">1.3 MB</p>
+                                </div>
+                            </div>
+                            <button type="button" id="btnDeleteFile" onclick="deleteFile()"
+                                class="h-6 self-center inline-flex items-center px-1.5 py-0.5 border border-red-500 shadow-sm text-xs font-medium rounded text-red-500 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                Delete
+                            </button>
+                        </li>
+                        <button type="submit"
+                            class=" mt-12 h-12 text-center w-full  px-4 py-2 border border-blue-600 text-sm font-medium rounded-xl shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Upload 1 file
                         </button>
-                    </div>
-                    <button type="submit"
-                        class=" mt-12 h-12 text-center w-full  px-4 py-2 border border-blue-600 text-sm font-medium rounded-xl shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        Upload 1 file
-                    </button>
                 </div>
 
                 </form>

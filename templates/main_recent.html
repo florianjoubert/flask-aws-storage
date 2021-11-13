@@ -31,30 +31,133 @@
                     </div>
                     <!-- We use less vertical padding on card headers on desktop than on body sections -->
                 </div>
-                <div class="lg:px-10 lg:py-5 sm:p-10 max-h-96 overflow-auto">
-                    <ul role="list" class="divide-y divide-gray-200">
+                <div class="lg:px-10 lg:py-2 sm:p-10 max-h-96 overflow-auto">
+                    <ul role="list" id="listFull" class="hidden divide-y divide-gray-200">
                         {% for item in files %}
-                        <li class="py-4 flex justify-between">
+                        <li class="py-3 flex justify-between">
                             <div class="flex">
-                                <img class="h-4" src="./static/img/image.png" alt="">
+                                {% if '.jpeg' in item.Key or '.png' in item.Key or '.jpg' in item.Key or '.webp' in item.Key  or '.svg' in item.Key or '.gif' in item.Key%}
+                                <img class="h-4" src="./static/img/icons/Image.png" alt="">
+                                {% elif '.pdf' in item.Key %}
+                                <img class="h-4" src="./static/img/icons/Page.png" alt="">
+                                {% elif  '.zip' in item.Key or '.rar' in item.Key or '.gz' in item.Key or '.bz2' in item.Key or '.7z' in item.Key %}
+                                <img class="h-4" src="./static/img/icons/Folder.png" alt="">
+                                {% elif '.pptx' in item.key %}
+                                <img class="h-4" src="./static/img/icons/Document.png" alt="">
+                                {% else %}
+                                <img class="h-4" src="./static/img/icons/Document.png" alt="">
+                                {% endif %}
                                 <div class="ml-3">
                                     <p class="text-sm font-medium text-gray-900">{{item.Key}}</p>
                                     {% if item.Size > 1000000 %}
-                                    <p class="text-xs font-light text-gray-500">Image ·
+                                    <p class="text-xs font-light text-gray-500">
                                         {{'%0.1f'| format(item.Size / 1000000|float)}} MB</p>
                                     {% else %}
-                                    <p class="text-xs font-light text-gray-500">Image ·
+                                    <p class="text-xs font-light text-gray-500">
                                         {{'%0.1f'| format(item.Size / 1000|float)}} KB</p>
-                                    {% endif %}                            
+                                    {% endif %}
                                 </div>
                             </div>
-                            <button type="button"
+                            <button type="button" onclick="copyClip('{{item.Key}}')"
                                 class="h-6 self-center inline-flex items-center px-1.5 py-0.5 border border-gray-300 shadow-sm text-xs font-medium rounded-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Copy URL
                             </button>
                         </li>
                         {% endfor %}
                     </ul>
+                    <ul role="list" id="listLimit" class="divide-y divide-gray-200">
+                        {% for item in filesLimit %}
+                        <li class="py-3 flex justify-between">
+                            <div class="flex">
+                                {% if '.jpeg' in item.Key or '.png' in item.Key or '.jpg' in item.Key or '.webp' in item.Key  or '.svg' in item.Key or '.gif' in item.Key%}
+                                <img class="h-4" src="./static/img/icons/Image.png" alt="">
+                                {% elif '.pdf' in item.Key %}
+                                <img class="h-4" src="./static/img/icons/Page.png" alt="">
+                                {% elif  '.zip' in item.Key or '.rar' in item.Key or '.gz' in item.Key or '.bz2' in item.Key or '.7z' in item.Key %}
+                                <img class="h-4" src="./static/img/icons/Folder.png" alt="">
+                                {% elif '.pptx' in item.key %}
+                                <img class="h-4" src="./static/img/icons/Document.png" alt="">
+                                {% else %}
+                                <img class="h-4" src="./static/img/icons/Document.png" alt="">
+                                {% endif %}
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-900">{{item.Key}}</p>
+                                    {% if item.Size > 1000000 %}
+                                    <p class="text-xs font-light text-gray-500">
+                                        {{'%0.1f'| format(item.Size / 1000000|float)}} MB</p>
+                                    {% else %}
+                                    <p class="text-xs font-light text-gray-500">
+                                        {{'%0.1f'| format(item.Size / 1000|float)}} KB</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <button type="button" onclick="copyClip('{{item.Key}}')"
+                                class="h-6 self-center inline-flex items-center px-1.5 py-0.5 border border-gray-300 shadow-sm text-xs font-medium rounded-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Copy URL
+                            </button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <button type="button" id="showAll" onClick="showAllUploads()"
+                        class="w-36 block mb-4 mx-auto px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        View all uploads
+                    </button>
+                    <button type="button" id="showLimit" onClick="showLimitUploads()"
+                        class="hidden w-36 block mb-4 mx-auto px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        View recent
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <!-- Global notification live region, render this permanently at the end of the document -->
+    <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
+        <div id="notifPanel" class="transform ease-out duration-300 transition translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2 w-full flex flex-col items-center space-y-4 sm:items-end">
+            <!--
+        Notification panel, dynamically insert this into the live region when it needs to be displayed
+  
+        Entering: "transform ease-out duration-300 transition"
+          From: "translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+          To: "translate-y-0 opacity-100 sm:translate-x-0"
+        Leaving: "transition ease-in duration-100"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+            <div
+                class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                <div class="p-4">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <!-- Heroicon name: outline/check-circle -->
+                            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div class="ml-3 w-0 flex-1 pt-0.5">
+                            <p class="text-sm font-medium text-gray-900">
+                                Successfully copied!
+                            </p>
+                            <p class="mt-1 text-sm text-gray-500">
+                                Anyone with this link can now download this file.
+                            </p>
+                        </div>
+                        <div class="ml-4 flex-shrink-0 flex">
+                            <button onclick="removeToast()"
+                                class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <span class="sr-only">Close</span>
+                                <!-- Heroicon name: solid/x -->
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

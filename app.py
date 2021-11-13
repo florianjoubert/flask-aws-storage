@@ -13,8 +13,9 @@ def home():
 @app.route("/recent")
 def recent():
     contents = list_files_v2(BUCKET)
+    contentsLimit = list_files_v2(BUCKET)[:5:]
     print(contents)
-    return render_template('main_recent.html', files = contents)
+    return render_template('main_recent.html', files = contents, filesLimit = contentsLimit)
 ##files = list_files_v2(BUCKET)[:5:]
 @app.route("/upload", methods=['POST'])
 def upload():

@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, send_file
-from s3_functions import list_files_v2, upload_file
+from s3_functions import list_files_v2, upload_file, convert_upload_files
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -14,7 +14,6 @@ def home():
 def recent():
     contents = list_files_v2(BUCKET)
     contentsLimit = list_files_v2(BUCKET)[:5:]
-    print(contents)
     return render_template('main_recent.html', files = contents, filesLimit = contentsLimit)
 ##files = list_files_v2(BUCKET)[:5:]
 @app.route("/upload", methods=['POST'])
@@ -22,7 +21,13 @@ def upload():
     if request.method == "POST":
         f = request.files['file']
         f.save(os.path.join(UPLOAD_FOLDER, secure_filename(f.filename)))
-        upload_file(f"uploads/{f.filename}", BUCKET)
+        print(f.filename)
+        print(os.path.splitext(f.filename)[1])
+        print('jpeg' in os.path.splitext(f.filename)[1])
+        if( 'jpg' in os.path.splitext(f.filename)[1] or 'jpeg' in os.path.splitext(f.filename)[1] or 'svg' in os.path.splitext(f.filename)[1] or 'png' in os.path.splitext(f.filename)[1] ):
+            convert_upload_files(f"uploads/{f.filename}",os.path.splitext(f.filename)[1].replace('.',''),BUCKET, UPLOAD_FOLDER )
+        else:
+            upload_file(f"uploads/{f.filename}", BUCKET)
         os.remove(f"uploads/{f.filename}")
         return redirect("/recent")
 
@@ -32,4 +37,3 @@ def page_not_found(e):
 
 if __name__ == '__main__':
     app.run(debug=True)
-    

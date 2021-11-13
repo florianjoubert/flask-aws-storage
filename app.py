@@ -21,9 +21,6 @@ def upload():
     if request.method == "POST":
         f = request.files['file']
         f.save(os.path.join(UPLOAD_FOLDER, secure_filename(f.filename)))
-        print(f.filename)
-        print(os.path.splitext(f.filename)[1])
-        print('jpeg' in os.path.splitext(f.filename)[1])
         if( 'jpg' in os.path.splitext(f.filename)[1] or 'jpeg' in os.path.splitext(f.filename)[1] or 'svg' in os.path.splitext(f.filename)[1] or 'png' in os.path.splitext(f.filename)[1] ):
             convert_upload_files(f"uploads/{f.filename}",os.path.splitext(f.filename)[1].replace('.',''),BUCKET, UPLOAD_FOLDER )
         else:
